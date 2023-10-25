@@ -1,22 +1,22 @@
-public class Personagens{
+public abstract class Personagens{
 
-    private static int posicaoX;
-    private static int posicaoY;
+    protected int posicaoX;
+    protected int posicaoY;
     private int velocidade;
 
     private static final int size=30;
 
-    public static void setPosicaoX(int posicaox){
+    public void setPosicaoX(int posicaox){
         posicaoX = posicaox;
     }
-    public static void setPosicaoY(int posicaoy){
+    public void setPosicaoY(int posicaoy){
         posicaoY = posicaoy;
     }
 
-    public static int getPosicaoX(){
+    public int getPosicaoX(){
         return posicaoX;
     }
-    public static int getPosicaoY(){
+    public int getPosicaoY(){
         return posicaoY;
     }
 

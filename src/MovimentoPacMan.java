@@ -7,7 +7,8 @@ import java.awt.event.KeyListener;
 
 
 public class MovimentoPacMan extends JPanel implements ActionListener, KeyListener {
-    private int personagemX=1;
+    private PacMan pacMan = new PacMan(PacGame.VELOCIDADE);
+    private int personagemX=1;//substituir pela posicao do pac
     private int personagemY=1;
     private Timer timer;
     private boolean movendoParaDireita = false;
@@ -23,41 +24,43 @@ public class MovimentoPacMan extends JPanel implements ActionListener, KeyListen
     }
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.setColor(Color.RED);
-        g.fillRect(personagemX, personagemY, 30, 30);
+        g.setColor(Color.YELLOW);
+        g.fillOval(personagemX, personagemY, 30, 30);//VER SE DA PRA DEIXAR REDONDO
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(movendoParaDireita){
-            if(personagemX+PacGame.VELOCIDADE<=1900){
+            if(personagemX+PacGame.VELOCIDADE<=900){
                 personagemX+=PacGame.VELOCIDADE;
             }else{
                 personagemX = 0;
             }
-            PacMan.setPosicaoX(personagemX);
+            pacMan.setPosicaoX(personagemX);
         }else if(movendoParaEsquerda){
             if (personagemX-PacGame.VELOCIDADE>=0){
                 personagemX-=PacGame.VELOCIDADE;
             }else {
-                personagemX = 1900;
+                personagemX = 900;
             }
-            PacMan.setPosicaoX(personagemX);
+            pacMan.setPosicaoX(personagemX);
         }else if(movendoParaBaixo){
-            if(personagemY+PacGame.VELOCIDADE<=1000){
+            if(personagemY+PacGame.VELOCIDADE<=600){
                 personagemY+=PacGame.VELOCIDADE;
             }else {
                 personagemY = 0;
             }
-            PacMan.setPosicaoY(personagemY);
+            pacMan.setPosicaoY(personagemY);
         }else if(movendoParaCima){
             if(personagemY-PacGame.VELOCIDADE>=0){
                 personagemY-=PacGame.VELOCIDADE;
             }else{
-                personagemY = 1000;
+                personagemY = 600;
             }
-            PacMan.setPosicaoY(personagemY);
+            pacMan.setPosicaoY(personagemY);
         }
+        PacMan.pacPosicaoX = personagemX;
+        PacMan.pacPosicaoY = personagemY;
         repaint();
     }
 

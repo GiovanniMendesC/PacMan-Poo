@@ -8,9 +8,15 @@ public class Painel {
     public static void Painel() {
         JFrame frame = new JFrame("PacMan Console");
         MovimentoPacMan mpm = new MovimentoPacMan();
+        MovimentoGhost mg = new MovimentoGhost();
+
+
+        //interface overrite
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1920, 1080);
+        frame.setSize(900, 600);
         frame.add(mpm);
+        frame.add(mg);
         frame.setVisible(true);
+
     }
 }
