@@ -5,18 +5,18 @@
 
 # 💻 Sobre o projeto
 Sendo um jogo extremamente popular e atemporal, Pac-man consiste num único objetivo: devorar todas as frutinhas do labirinto sem ser pego por algum dos fantasmas. Este é um projeto desenvolvido para a disciplina de Programação Orientada a Objetos com Java, onde a equipe fez uso de conceitos como herança, collection, polimorfismo, encapsulamento, classes abstratas e interface, dentre outros.
-## ⌨️ Tecnologias utilizadas
-### Implementação:
+# ⌨️ Tecnologias utilizadas
+## Implementação:
 Java
-### Ambientes de Desenvolvimento:
+## Ambientes de Desenvolvimento:
 [1. IntelliJ IDEA](https://www.oracle.com/br/java/)
 
 [2. Visual Studio Code](https://code.visualstudio.com/download)
-## 🎮 Como executar o projeto
-## 🎨 Layout
-## 👾 Demonstração
+# 🎮 Como executar o projeto
+# 🎨 Layout
+# 👾 Demonstração
 [Link para demonstração](https://drive.google.com/drive/folders/10P7K4x-vmwaaGUgNhEzWaVZ6yLecun58?usp=sharing)
-## 👤 Autores
+# 👤 Autores
 [1. Ana Clara](https://github.com/anaclx)
 
 [2. Danylo Nunes](https://github.com/danylodebz)
