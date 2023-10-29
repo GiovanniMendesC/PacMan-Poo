@@ -13,7 +13,7 @@ public class Painel {
 
         //interface overrite
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900, 600);
+        frame.setSize(918, 640);
         frame.add(mpm);
         frame.add(mg);
         frame.setVisible(true);

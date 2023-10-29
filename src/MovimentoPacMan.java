@@ -8,8 +8,8 @@ import java.awt.event.KeyListener;
 
 public class MovimentoPacMan extends JPanel implements ActionListener, KeyListener {
     private PacMan pacMan = new PacMan(PacGame.VELOCIDADE);
-    private int personagemX=1;//substituir pela posicao do pac
-    private int personagemY=1;
+    private int personagemX=436;//substituir pela posicao do pac
+    private int personagemY=500;
     private Timer timer;
     private boolean movendoParaDireita = false;
     private boolean movendoParaEsquerda = false;
@@ -30,30 +30,40 @@ public class MovimentoPacMan extends JPanel implements ActionListener, KeyListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println(personagemX);
+        System.out.println(personagemY);
         if(movendoParaDireita){
-            if(personagemX+PacGame.VELOCIDADE<=900){
-                personagemX+=PacGame.VELOCIDADE;
+            if(personagemX+PacGame.VELOCIDADE<=880){
+                if(Mapa.matriz[Math.round((personagemY+10)/20f)][Math.round((personagemX+20+PacGame.VELOCIDADE)/20f)]!=1&&Mapa.matriz[Math.round((personagemY-10)/20f)][Math.round((personagemX+20+PacGame.VELOCIDADE)/20f)]!=1){
+                    personagemX+=PacGame.VELOCIDADE;
+                }
             }else{
                 personagemX = 0;
             }
             pacMan.setPosicaoX(personagemX);
         }else if(movendoParaEsquerda){
             if (personagemX-PacGame.VELOCIDADE>=0){
-                personagemX-=PacGame.VELOCIDADE;
+                if(Mapa.matriz[Math.round((personagemY+10)/20f)][Math.round((personagemX-10-PacGame.VELOCIDADE)/20f)]!=1&&Mapa.matriz[Math.round((personagemY-10)/20f)][Math.round((personagemX-10-PacGame.VELOCIDADE)/20f)]!=1){
+                    personagemX-=PacGame.VELOCIDADE;
+                }
             }else {
-                personagemX = 900;
+                personagemX = 880;
             }
             pacMan.setPosicaoX(personagemX);
         }else if(movendoParaBaixo){
             if(personagemY+PacGame.VELOCIDADE<=600){
-                personagemY+=PacGame.VELOCIDADE;
+                if(Mapa.matriz[Math.round((personagemY+20+PacGame.VELOCIDADE)/20f)][Math.round((personagemX+10)/20f)]!=1&&Mapa.matriz[Math.round((personagemY+20+PacGame.VELOCIDADE)/20f)][Math.round((personagemX-10)/20f)]!=1){
+                    personagemY+=PacGame.VELOCIDADE;
+                }
             }else {
                 personagemY = 0;
             }
             pacMan.setPosicaoY(personagemY);
         }else if(movendoParaCima){
             if(personagemY-PacGame.VELOCIDADE>=0){
-                personagemY-=PacGame.VELOCIDADE;
+                if(Mapa.matriz[Math.round((personagemY-10-PacGame.VELOCIDADE)/20f)][Math.round((personagemX+10)/20f)]!=1&&Mapa.matriz[Math.round((personagemY-10-PacGame.VELOCIDADE)/20f)][Math.round((personagemX-10)/20f)]!=1){
+                    personagemY-=PacGame.VELOCIDADE;
+                }
             }else{
                 personagemY = 600;
             }
