@@ -30,8 +30,8 @@ public class MovimentoPacMan extends JPanel implements ActionListener, KeyListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println(personagemX);
-        System.out.println(personagemY);
+//        System.out.println(personagemX);
+//        System.out.println(personagemY);
         if(movendoParaDireita){
             if(personagemX+PacGame.VELOCIDADE<=880){
                 if(Mapa.matriz[Math.round((personagemY+10)/20f)][Math.round((personagemX+20+PacGame.VELOCIDADE)/20f)]!=1&&Mapa.matriz[Math.round((personagemY-10)/20f)][Math.round((personagemX+20+PacGame.VELOCIDADE)/20f)]!=1){

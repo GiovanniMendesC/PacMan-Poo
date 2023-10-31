@@ -10,6 +10,32 @@ public class MovimentoGhost extends JPanel{
     private int[] direcao = {1, 2, 3, 4};
     private Timer timer, timer1;
 
+    public void MarcouPonto(){
+        int i, j, k, l, m, n, o, p;
+        i=Math.round((PacMan.pacPosicaoY+10)/20f);
+        j=Math.round((PacMan.pacPosicaoX)/20f);
+        k=Math.round((PacMan.pacPosicaoY)/20f);
+        l=Math.round((PacMan.pacPosicaoX+10)/20f);
+        m=Math.round((PacMan.pacPosicaoY-10)/20f);
+        n=Math.round((PacMan.pacPosicaoX)/20f);
+        o=Math.round((PacMan.pacPosicaoY)/20f);
+        p=Math.round((PacMan.pacPosicaoX-10)/20f);
+
+        if(Mapa.mapaPonto[i][j]==1){
+            Mapa.mapaPonto[i][j]=0;
+            Player.pontuacao++;
+        }else if(Mapa.mapaPonto[k][l]==1){
+            Mapa.mapaPonto[k][l]=0;
+            Player.pontuacao++;
+        }else if(Mapa.mapaPonto[m][n]==1){
+            Mapa.mapaPonto[m][n]=0;
+            Player.pontuacao++;
+        }else if(Mapa.mapaPonto[o][p]==1){
+            Mapa.mapaPonto[o][p]=0;
+            Player.pontuacao++;
+        }
+    }
+
     public float DistanciaNova(int posicaoFantasmaX, int posicaoFantasmaY, Ghost fantasma, int direcao){
         if(direcao == 1){
             posicaoFantasmaX += (PacGame.VELOCIDADE-1);
@@ -27,8 +53,6 @@ public class MovimentoGhost extends JPanel{
             if(DistanciaNova(fantasma.posicaoX, fantasma.posicaoY, fantasma, i)<fantasma.distanciaPacMan(PacMan.pacPosicaoX, PacMan.pacPosicaoY)){
                 if(!VaiBater(fantasma, i)) {
                     return i;
-                }else{
-
                 }
             }
         }
@@ -77,7 +101,6 @@ public class MovimentoGhost extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 for(int i=0; i<4; i++){
-
                     if(fantasma[i].distanciaPacMan(PacMan.pacPosicaoX, PacMan.pacPosicaoY)>200){
                         if(direcao[i]==1){
                             if(fantasma[i].posicaoX+(PacGame.VELOCIDADE-1)<=880){
@@ -167,6 +190,8 @@ public class MovimentoGhost extends JPanel{
                     }
                     repaint();
                 }
+                MarcouPonto();
+                System.out.println(Player.pontuacao);
             }
         });
         timer1 = new Timer(2000, new ActionListener() {
@@ -184,25 +209,33 @@ public class MovimentoGhost extends JPanel{
     }
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        for(int i=0; i<4; i++){
-            g.setColor(corDoFantasma[i]);
-            g.fillRect(fantasma[i].posicaoX, fantasma[i].posicaoY, 30, 30);
-        }
-        g.setColor(Color.YELLOW);
-        g.fillOval(PacMan.pacPosicaoX,PacMan.pacPosicaoY , 30, 30);
-        for(int i=0; i<30; i++){
-            for(int j=0; j<45; j++){
-                if(Mapa.matriz[i][j]==1){
-                    g.setColor(Color.blue);
-                    g.fillRect(j*20, i*20, 20, 20);
-                }
-                if(Mapa.matriz[i][j]==-1){
-                    g.setColor(Color.ORANGE);
-                    g.fillOval(j*20, i*20, 7, 7);
+        if(Player.pontuacao<10) {
+            for (int i = 0; i < 4; i++) {
+                g.setColor(corDoFantasma[i]);
+                g.fillRect(fantasma[i].posicaoX, fantasma[i].posicaoY, 30, 30);
+            }
+
+
+            g.setColor(Color.YELLOW);
+            g.fillOval(PacMan.pacPosicaoX, PacMan.pacPosicaoY, 30, 30);
+            for (int i = 0; i < 30; i++) {
+                for (int j = 0; j < 45; j++) {
+                    if (Mapa.matriz[i][j] == 1) {
+                        g.setColor(Color.blue);
+                        g.fillRect(j * 20, i * 20, 20, 20);
+                    }
+                    if (Mapa.mapaPonto[i][j] == 1) {
+                        g.setColor(Color.ORANGE);
+                        g.fillOval(j * 20, i * 20, 7, 7);
+                    }
                 }
             }
+        }else {
+            g.setColor(Color.YELLOW);
+            Font font = new Font("Arial", Font.PLAIN, 30);
+            g.setFont(font);
+            g.drawString("GAME OVER!", 355, 300);
         }
-
         setBackground(Color.BLACK);
     }
 

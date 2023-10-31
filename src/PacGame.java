@@ -4,6 +4,7 @@ public class PacGame{
     public static void main(String[] args) {
         PacMan pm = new PacMan(VELOCIDADE);
         Ghost  g = new Ghost(VELOCIDADE);
+        Player pp = new Player();
 
         Painel.Painel();
     }

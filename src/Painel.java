@@ -16,6 +16,7 @@ public class Painel {
         frame.setSize(918, 640);
         frame.add(mpm);
         frame.add(mg);
+
         frame.setVisible(true);
 
     }
