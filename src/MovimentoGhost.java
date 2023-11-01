@@ -9,6 +9,22 @@ public class MovimentoGhost extends JPanel{
     private Color[] corDoFantasma = {Color.RED, Color.PINK, Color.GREEN, Color.ORANGE};
     private int[] direcao = {1, 2, 3, 4};
     private Timer timer, timer1;
+    private int contador=0;
+    private boolean continua = true;
+
+    public boolean FantasmaPegouPacman(){
+        for(int i=0; i<4; i++){
+            if(Math.round(fantasma[i].posicaoX/20f)==Math.round(PacMan.pacPosicaoX/20f)&&Math.round(fantasma[i].posicaoY/20f)==Math.round(PacMan.pacPosicaoY/20f)&&contador==0){
+                continua = false;
+                contador++;
+                return true;
+            }
+        }
+        if(contador!=0){
+            return true;
+        }
+        return false;
+    }
 
     public void MarcouPonto(){
         int i, j, k, l, m, n, o, p;
@@ -100,98 +116,99 @@ public class MovimentoGhost extends JPanel{
         timer = new Timer(10, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                for(int i=0; i<4; i++){
-                    if(fantasma[i].distanciaPacMan(PacMan.pacPosicaoX, PacMan.pacPosicaoY)>200){
-                        if(direcao[i]==1){
-                            if(fantasma[i].posicaoX+(PacGame.VELOCIDADE-1)<=880){
-                                if(!VaiBater(fantasma[i], direcao[i])){
-                                    fantasma[i].posicaoX+=(PacGame.VELOCIDADE-1);
-                                }else{
-                                    direcao[i] = (int)(Math.random()*4.9+0.1);
+                if (continua) {
+                    for (int i = 0; i < 4; i++) {
+                        if (fantasma[i].distanciaPacMan(PacMan.pacPosicaoX, PacMan.pacPosicaoY) > 200) {
+                            if (direcao[i] == 1) {
+                                if (fantasma[i].posicaoX + (PacGame.VELOCIDADE - 1) <= 880) {
+                                    if (!VaiBater(fantasma[i], direcao[i])) {
+                                        fantasma[i].posicaoX += (PacGame.VELOCIDADE - 1);
+                                    } else {
+                                        direcao[i] = (int) (Math.random() * 4.9 + 0.1);
+                                    }
+                                } else {
+                                    fantasma[i].posicaoX = 0;
                                 }
-                            }else{
-                                fantasma[i].posicaoX=0;
-                            }
-                        }else if(direcao[i] == 2){
-                            if(fantasma[i].posicaoX-(PacGame.VELOCIDADE-1)>4){
-                                if(!VaiBater(fantasma[i], direcao[i])){
-                                    fantasma[i].posicaoX-=(PacGame.VELOCIDADE-1);
-                                }else{
-                                    direcao[i] = (int)(Math.random()*4.9+0.1);
-                                }
-                            }else {
-                                fantasma[i].posicaoX = 880;
-                            }
-                        }else if(direcao[i] == 3){
-                            if(fantasma[i].posicaoY+(PacGame.VELOCIDADE-1)<=600){
-                                if(!VaiBater(fantasma[i], direcao[i])){
-                                    fantasma[i].posicaoY+=(PacGame.VELOCIDADE-1);
-                                }else{
-                                    direcao[i] = (int)(Math.random()*4.9+0.1);
-                                }
-                            }else{
-                                fantasma[i].posicaoY=0;
-                            }
-                        }else if(direcao[i] == 4) {
-                            if(fantasma[i].posicaoY-(PacGame.VELOCIDADE-1)>=0){
-                                if(!VaiBater(fantasma[i], direcao[i])){
-                                    fantasma[i].posicaoY -= (PacGame.VELOCIDADE-1);
-                                }else{
-                                    direcao[i] = (int)(Math.random()*4.9+0.1);
-                                }
-                            }else{
-                                fantasma[i].posicaoY = 600;
-                            }
-                        }
-                    }else{
-                        //ele tem q se mover para o caminho que deixe a distância menor
-                        switch (DirecaoNova(fantasma[i].posicaoX, fantasma[i].posicaoY, fantasma[i])){
-                            case 0:
-                                break;
-                            case 1:
-                                if(fantasma[i].posicaoX+(PacGame.VELOCIDADE-1)<=860){
-
-                                    fantasma[i].posicaoX+=(PacGame.VELOCIDADE-1);
-
-                                }else{
-                                    fantasma[i].posicaoX=0;
-                                }
-                                break;
-                            case 2:
-                                if(fantasma[i].posicaoX-(PacGame.VELOCIDADE-1)>4){
-
-                                    fantasma[i].posicaoX-=(PacGame.VELOCIDADE-1);
-
-                                }else {
+                            } else if (direcao[i] == 2) {
+                                if (fantasma[i].posicaoX - (PacGame.VELOCIDADE - 1) > 4) {
+                                    if (!VaiBater(fantasma[i], direcao[i])) {
+                                        fantasma[i].posicaoX -= (PacGame.VELOCIDADE - 1);
+                                    } else {
+                                        direcao[i] = (int) (Math.random() * 4.9 + 0.1);
+                                    }
+                                } else {
                                     fantasma[i].posicaoX = 880;
                                 }
-                                break;
-                            case 3:
-                                if(fantasma[i].posicaoY+(PacGame.VELOCIDADE-1)<=600){
-
-                                    fantasma[i].posicaoY+=(PacGame.VELOCIDADE-1);
-
-                                }else{
-                                    fantasma[i].posicaoY=0;
+                            } else if (direcao[i] == 3) {
+                                if (fantasma[i].posicaoY + (PacGame.VELOCIDADE - 1) <= 600) {
+                                    if (!VaiBater(fantasma[i], direcao[i])) {
+                                        fantasma[i].posicaoY += (PacGame.VELOCIDADE - 1);
+                                    } else {
+                                        direcao[i] = (int) (Math.random() * 4.9 + 0.1);
+                                    }
+                                } else {
+                                    fantasma[i].posicaoY = 0;
                                 }
-                                break;
-                            case 4:
-                                if(fantasma[i].posicaoY-(PacGame.VELOCIDADE-1)>=0){
-
-                                    fantasma[i].posicaoY -= (PacGame.VELOCIDADE-1);
-
-                                }else{
+                            } else if (direcao[i] == 4) {
+                                if (fantasma[i].posicaoY - (PacGame.VELOCIDADE - 1) >= 0) {
+                                    if (!VaiBater(fantasma[i], direcao[i])) {
+                                        fantasma[i].posicaoY -= (PacGame.VELOCIDADE - 1);
+                                    } else {
+                                        direcao[i] = (int) (Math.random() * 4.9 + 0.1);
+                                    }
+                                } else {
                                     fantasma[i].posicaoY = 600;
                                 }
-                                break;
-                            default:
-                                System.exit(1);
+                            }
+                        } else {
+                            //ele tem q se mover para o caminho que deixe a distância menor
+                            switch (DirecaoNova(fantasma[i].posicaoX, fantasma[i].posicaoY, fantasma[i])) {
+                                case 0:
+                                    break;
+                                case 1:
+                                    if (fantasma[i].posicaoX + (PacGame.VELOCIDADE - 1) <= 860) {
+
+                                        fantasma[i].posicaoX += (PacGame.VELOCIDADE - 1);
+
+                                    } else {
+                                        fantasma[i].posicaoX = 0;
+                                    }
+                                    break;
+                                case 2:
+                                    if (fantasma[i].posicaoX - (PacGame.VELOCIDADE - 1) > 4) {
+
+                                        fantasma[i].posicaoX -= (PacGame.VELOCIDADE - 1);
+
+                                    } else {
+                                        fantasma[i].posicaoX = 880;
+                                    }
+                                    break;
+                                case 3:
+                                    if (fantasma[i].posicaoY + (PacGame.VELOCIDADE - 1) <= 600) {
+
+                                        fantasma[i].posicaoY += (PacGame.VELOCIDADE - 1);
+
+                                    } else {
+                                        fantasma[i].posicaoY = 0;
+                                    }
+                                    break;
+                                case 4:
+                                    if (fantasma[i].posicaoY - (PacGame.VELOCIDADE - 1) >= 0) {
+
+                                        fantasma[i].posicaoY -= (PacGame.VELOCIDADE - 1);
+
+                                    } else {
+                                        fantasma[i].posicaoY = 600;
+                                    }
+                                    break;
+                                default:
+                                    System.exit(1);
+                            }
                         }
+                        repaint();
                     }
-                    repaint();
+                    MarcouPonto();
                 }
-                MarcouPonto();
-                System.out.println(Player.pontuacao);
             }
         });
         timer1 = new Timer(2000, new ActionListener() {
@@ -209,15 +226,14 @@ public class MovimentoGhost extends JPanel{
     }
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-        if(Player.pontuacao<10) {
+        setBackground(Color.BLACK);
+
+        if(Player.pontuacao<10&&!FantasmaPegouPacman()) {
             for (int i = 0; i < 4; i++) {
                 g.setColor(corDoFantasma[i]);
                 g.fillRect(fantasma[i].posicaoX, fantasma[i].posicaoY, 30, 30);
             }
 
-
-            g.setColor(Color.YELLOW);
-            g.fillOval(PacMan.pacPosicaoX, PacMan.pacPosicaoY, 30, 30);
             for (int i = 0; i < 30; i++) {
                 for (int j = 0; j < 45; j++) {
                     if (Mapa.matriz[i][j] == 1) {
@@ -230,13 +246,32 @@ public class MovimentoGhost extends JPanel{
                     }
                 }
             }
+
+            g.setColor(Color.YELLOW);
+            g.fillOval(PacMan.pacPosicaoX, PacMan.pacPosicaoY, 30, 30);
+
+            g.setColor(Color.ORANGE);
+            g.drawString("Pontuação "+Float.toString(Player.pontuacao), 20, 20);
+
+        }else if(Player.pontuacao==10){
+            g.setColor(Color.YELLOW);
+            Font font = new Font("Arial", Font.PLAIN, 30);
+            g.setFont(font);
+            g.drawString("YOU WON!", 355, 300);
+            timer1.stop();
+            timer.stop();
+            continua=false;
+            repaint();
+
         }else {
             g.setColor(Color.YELLOW);
             Font font = new Font("Arial", Font.PLAIN, 30);
             g.setFont(font);
             g.drawString("GAME OVER!", 355, 300);
+            timer1.stop();
+            timer.stop();
+            repaint();
         }
-        setBackground(Color.BLACK);
     }
 
 }

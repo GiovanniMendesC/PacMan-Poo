@@ -22,11 +22,6 @@ public class MovimentoPacMan extends JPanel implements ActionListener, KeyListen
         addKeyListener(this);
         setFocusable(true);
     }
-    protected void paintComponent(Graphics g){
-        super.paintComponent(g);
-        g.setColor(Color.YELLOW);
-        g.fillOval(personagemX, personagemY, 30, 30);//VER SE DA PRA DEIXAR REDONDO
-    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -71,7 +66,6 @@ public class MovimentoPacMan extends JPanel implements ActionListener, KeyListen
         }
         PacMan.pacPosicaoX = personagemX;
         PacMan.pacPosicaoY = personagemY;
-        repaint();
     }
 
     @Override
