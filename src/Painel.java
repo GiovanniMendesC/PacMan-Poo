@@ -1,7 +1,5 @@
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.*;
+
 
 public class Painel {
 
@@ -11,12 +9,15 @@ public class Painel {
         MovimentoGhost mg = new MovimentoGhost();
 
 
-        //interface overrite
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900, 600);
-        frame.add(mpm);
-        frame.add(mg);
-        frame.setVisible(true);
 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//Define como fechar o programa
+        frame.setSize(918, 640);
+
+        frame.add(mpm);//adiciona os dois objetos, no caso o pacman
+        frame.add(mg);//o ghost
+        //tem q ser os dois para tanto o fantasma quanto o pacman se mexerem
+
+        frame.setVisible(true);//"liga" a imagem
     }
+
 }

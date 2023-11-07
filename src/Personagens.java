@@ -1,3 +1,4 @@
+//classe abstrata base para os personagens
 public abstract class Personagens{
 
     protected int posicaoX;
@@ -13,22 +14,9 @@ public abstract class Personagens{
         posicaoY = posicaoy;
     }
 
-    public int getPosicaoX(){
-        return posicaoX;
-    }
-    public int getPosicaoY(){
-        return posicaoY;
-    }
-
-    public int getSize(){
-        return size;
-    }
 
     public void setVelocidade(int velocidade) {
         this.velocidade = velocidade;
     }
 
-    public int getVelociade(){
-        return velocidade;
-    }
 }

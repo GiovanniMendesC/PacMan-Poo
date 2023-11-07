@@ -1,8 +1,5 @@
-public class Ghost extends Personagens{
-    public Ghost(int pacVelocidade){
-        setVelocidade(pacVelocidade);
-    }
-    public Ghost(int posicaoInicialX, int posicaoInicialY){
+public class Ghost extends Personagens{//herda personagens
+    public Ghost(int posicaoInicialX, int posicaoInicialY){//inicia o fantasma na posição
         setPosicaoX(posicaoInicialX);
         setPosicaoY(posicaoInicialY);
     }
