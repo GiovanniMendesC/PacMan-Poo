@@ -3,7 +3,7 @@ public abstract class Personagens{
 
     protected int posicaoX;
     protected int posicaoY;
-    private int velocidade;
+    protected int velocidade;
 
     private static final int size=30;
 

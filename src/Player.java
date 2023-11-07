@@ -1,4 +1,4 @@
-//classe que iria funcionar para o banco de dados
+//classe que iria funcionar para o banco de dados e collectoins
 public class Player {
     private String nome;
     public static float pontuacao;

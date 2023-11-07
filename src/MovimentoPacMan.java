@@ -1,4 +1,5 @@
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -8,9 +9,7 @@ import java.awt.event.KeyListener;
 
 //herda a classe JPanel e implementa as interfaces de ActoinListener e KeyListener
 public class MovimentoPacMan extends JPanel implements ActionListener, KeyListener {
-    private PacMan pacMan = new PacMan(PacGame.VELOCIDADE);
-    private int personagemX=436;
-    private int personagemY=500;
+    private PacMan pacMan = new PacMan(PacGame.VELOCIDADE, 436, 500);
     private Timer timer;
     private boolean movendoParaDireita = false;
     private boolean movendoParaEsquerda = false;
@@ -31,6 +30,7 @@ public class MovimentoPacMan extends JPanel implements ActionListener, KeyListen
     //método para verificar se o pacman está na posição de uma célula de ponto na matriz e soma pontos
     public void MarcouPonto(){
         //cada direção precisou ser colocada como variável, porque se não o valor era alterado dentro do if
+        //leva em consederação o tamanho do pacman (por isso tem +/-10)
         int i, j, k, l, m, n, o, p;
         i=Math.round((PacMan.pacPosicaoY+10)/20f);
         j=Math.round((PacMan.pacPosicaoX)/20f);
@@ -68,52 +68,48 @@ public class MovimentoPacMan extends JPanel implements ActionListener, KeyListen
         //verifica que direção está se mexendo
         if(movendoParaDireita){
 
-            if(personagemX+PacGame.VELOCIDADE<=880){//verifica se está dentro do limite do mapa
+            if(pacMan.posicaoX+PacGame.VELOCIDADE<=880){//verifica se está dentro do limite do mapa
                 //verifica se a posição do pacman ao andar não vai bater numa parede
-                if(Mapa.matriz[Math.round((personagemY+10)/20f)][Math.round((personagemX+20+PacGame.VELOCIDADE)/20f)]!=1&&Mapa.matriz[Math.round((personagemY-10)/20f)][Math.round((personagemX+20+PacGame.VELOCIDADE)/20f)]!=1){
-                    personagemX+=PacGame.VELOCIDADE;
+                if(Mapa.matriz[Math.round((pacMan.posicaoY+10)/20f)][Math.round((pacMan.posicaoX+20+pacMan.velocidade)/20f)]!=1&&Mapa.matriz[Math.round((pacMan.posicaoY-10)/20f)][Math.round((pacMan.posicaoX+20+pacMan.velocidade)/20f)]!=1){
+                    pacMan.posicaoX+= pacMan.velocidade;
                 }
             }else{//se passar do limite volta pro começo
-                personagemX = 0;
+                pacMan.posicaoX = 0;
             }
-            pacMan.setPosicaoX(personagemX);//atualiza o X
 
         }else if(movendoParaEsquerda){
 
-            if (personagemX-PacGame.VELOCIDADE>=0){
-                if(Mapa.matriz[Math.round((personagemY+10)/20f)][Math.round((personagemX-10-PacGame.VELOCIDADE)/20f)]!=1&&Mapa.matriz[Math.round((personagemY-10)/20f)][Math.round((personagemX-10-PacGame.VELOCIDADE)/20f)]!=1){
-                    personagemX-=PacGame.VELOCIDADE;
+            if (pacMan.posicaoX-PacGame.VELOCIDADE>=0){
+                if(Mapa.matriz[Math.round((pacMan.posicaoY+10)/20f)][Math.round((pacMan.posicaoX-10-pacMan.velocidade)/20f)]!=1&&Mapa.matriz[Math.round((pacMan.posicaoY-10)/20f)][Math.round((pacMan.posicaoX-10-pacMan.velocidade)/20f)]!=1){
+                    pacMan.posicaoX-=pacMan.velocidade;
                 }
             }else {
-                personagemX = 880;
+                pacMan.posicaoX = 880;
             }
-            pacMan.setPosicaoX(personagemX);
 
         }else if(movendoParaBaixo){
 
-            if(personagemY+PacGame.VELOCIDADE<=600){
-                if(Mapa.matriz[Math.round((personagemY+20+PacGame.VELOCIDADE)/20f)][Math.round((personagemX+10)/20f)]!=1&&Mapa.matriz[Math.round((personagemY+20+PacGame.VELOCIDADE)/20f)][Math.round((personagemX-10)/20f)]!=1){
-                    personagemY+=PacGame.VELOCIDADE;
+            if(pacMan.posicaoY+PacGame.VELOCIDADE<=600){
+                if(Mapa.matriz[Math.round((pacMan.posicaoY+20+pacMan.velocidade)/20f)][Math.round((pacMan.posicaoX+10)/20f)]!=1&&Mapa.matriz[Math.round((pacMan.posicaoY+20+pacMan.velocidade)/20f)][Math.round((pacMan.posicaoX-10)/20f)]!=1){
+                    pacMan.posicaoY+=pacMan.velocidade;
                 }
             }else {
-                personagemY = 0;
+                pacMan.posicaoY = 0;
             }
-            pacMan.setPosicaoY(personagemY);
 
         }else if(movendoParaCima){
 
-            if(personagemY-PacGame.VELOCIDADE>=0){
-                if(Mapa.matriz[Math.round((personagemY-10-PacGame.VELOCIDADE)/20f)][Math.round((personagemX+10)/20f)]!=1&&Mapa.matriz[Math.round((personagemY-10-PacGame.VELOCIDADE)/20f)][Math.round((personagemX-10)/20f)]!=1){
-                    personagemY-=PacGame.VELOCIDADE;
+            if(pacMan.posicaoY-PacGame.VELOCIDADE>=0){
+                if(Mapa.matriz[Math.round((pacMan.posicaoY-10-pacMan.velocidade)/20f)][Math.round((pacMan.posicaoX+10)/20f)]!=1&&Mapa.matriz[Math.round((pacMan.posicaoY-10-pacMan.velocidade)/20f)][Math.round((pacMan.posicaoX-10)/20f)]!=1){
+                    pacMan.posicaoY-=pacMan.velocidade;
                 }
             }else{
-                personagemY = 600;
+                pacMan.posicaoY = 600;
             }
-            pacMan.setPosicaoY(personagemY);
         }
         //pacPosicao recebe o valor de X após a execução para que fantasma tenha acesso à localização dele
-        PacMan.pacPosicaoX = personagemX;
-        PacMan.pacPosicaoY = personagemY;
+        PacMan.pacPosicaoX = pacMan.posicaoX;
+        PacMan.pacPosicaoY = pacMan.posicaoY;
         MarcouPonto();
     }
 
