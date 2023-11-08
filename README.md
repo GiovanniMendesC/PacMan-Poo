@@ -13,7 +13,9 @@ Java
 
 [2. Visual Studio Code](https://code.visualstudio.com/download)
 # 🎮 Como executar o projeto
-# 🎨 Layout
+1. Clone o código do jogo em "Code";
+2. Execute em um editor de código como o Visual Studio Code ou em um Ambiente de Desenvolvimento como o IntelliJ
+   ### OBS: JVM necessária para o funcionamento do programa
 # 👾 Demonstração
 [Link para demonstração](https://drive.google.com/drive/folders/10P7K4x-vmwaaGUgNhEzWaVZ6yLecun58?usp=sharing)
 # 👤 Autores
