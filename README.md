@@ -19,12 +19,12 @@ Sendo um jogo extremamente popular e atemporal, Pac-man consiste num único obje
 
 - Painel é uma classe que lida com a exibição do jogo na tela. Ela cuida da apresentação elementos visuais do jogo em um frame.
 
-- Mapa é uma classe que contém uma matriz representando o layout do mapa do jogo em  células, informações sobre as paredes e pontos.
+- Mapa é uma classe que contém uma matriz representando o layout do mapa do jogo em  células, informações sobre as paredes e pontos. Cada céulula da matriz representa 20 unidades da tela do pacman (600x900).
 
 - Player é uma classe que, originalmente, deveria trabalhar com os dados dos usuários e o banco de dados, mas essa funcionalidade não foi implementada. Ele guarda nome e pontos do usuário.
 
 - PacGame é a classe principal do jogo que inicia a execução no método main.
-- 
+  
 # ⌨️ Tecnologias utilizadas
 ## Implementação:
 Java
