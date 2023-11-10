@@ -29,8 +29,6 @@ Sendo um jogo extremamente popular e atemporal, Pac-man consiste num único obje
 <h1 align="center">
  <img src= https://github.com/GiovanniMendesC/Projeto_final_POO/blob/main/Classe%20UML.png?raw=true />
 </h1>
-
-![Exemplo de Imagem](main/Class UML.png)
   
 # ⌨️ Tecnologias utilizadas
 ## Implementação:
