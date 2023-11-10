@@ -6,6 +6,8 @@
 # 💻 Sobre o projeto
 Sendo um jogo extremamente popular e atemporal, Pac-man consiste num único objetivo: devorar todas as frutinhas do labirinto sem ser pego por algum dos fantasmas. Este é um projeto desenvolvido para a disciplina de Programação Orientada a Objetos com Java, onde a equipe fez uso de conceitos como herança, polimorfismo, encapsulamento, classes abstratas e interface, dentre outros.
 
+O objetivo do projeto é tentar recriar o jogo, do zero, a partir dos conhecimentos adiquiridos no decorrer do curso.
+
 # Relação de classes
 - Personagens, classe abstrata que serve como a base para a criação de personagens no jogo, incluindo PacMan e Ghost, que são suas classes filhas. A classe Personagens não pode ser instanciada e pode ter métodos abstratos, embora, neste caso específico, não tenha nenhum método abstrato definido.
 
